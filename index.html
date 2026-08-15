@@ -22,9 +22,8 @@
       scroll-behavior: smooth;
     }
 
-    /* Фоновый цвет стола / заднего плана */
     body {
-      background-color: #ebe5db;
+      background-color: #e3ded6;
       color: #3d3630;
       font-family: 'Montserrat', sans-serif;
       display: flex;
@@ -33,12 +32,11 @@
       padding: 20px 0;
     }
 
-    /* Единый бумажный свиток */
     .paper-scroll {
       max-width: 460px;
       width: 100%;
-      background: #faf7f2; /* Текстурный бумажный лист */
-      box-shadow: 0 15px 40px rgba(60, 50, 40, 0.08);
+      background: #f7f3ed;
+      box-shadow: 0 20px 50px rgba(50, 40, 30, 0.12);
       position: relative;
       overflow: hidden;
     }
@@ -48,14 +46,12 @@
       font-weight: 400;
     }
 
-    /* Общие секции с плавным отступом */
     .section {
-      padding: 45px 25px;
+      padding: 40px 25px;
       text-align: center;
       position: relative;
     }
 
-    /* Плавный мягкий разделитель между секциями */
     .section-divider {
       height: 1px;
       width: 60%;
@@ -63,32 +59,59 @@
       background: linear-gradient(to right, transparent, #dcd3c5, transparent);
     }
 
-    /* === СЕКЦИЯ 1: HERO === */
+    /* === СЕКЦИЯ 1: HERO (ИМЕНА В РВАНОЙ РАМКЕ) === */
     .hero-section {
-      padding-top: 55px;
-      padding-bottom: 40px;
+      padding-top: 45px;
+      padding-bottom: 25px;
+    }
+
+    /* Обёртка с тенью для рваной бумаги */
+    .hero-torn-wrapper {
+      margin: 15px 10px 25px 10px;
+      position: relative;
+      filter: drop-shadow(0 10px 18px rgba(60, 50, 40, 0.12));
+    }
+
+    /* Карточка из рваной бумаги с именами */
+    .hero-torn-card {
+      background-color: #ffffff;
+      background-image: radial-gradient(#f3ede4 1px, transparent 1px);
+      background-size: 16px 16px;
+      padding: 35px 20px;
+      /* CSS-маска рваного края */
+      clip-path: polygon(
+        0% 12px, 3% 2px, 8% 10px, 14% 1px, 20% 12px, 26% 2px, 32% 11px, 39% 1px, 45% 12px, 51% 2px, 58% 11px, 64% 1px, 71% 12px, 77% 2px, 83% 10px, 90% 1px, 96% 11px, 100% 0px,
+        100% calc(100% - 10px), 95% 100%, 89% calc(100% - 12px), 82% calc(100% - 2px), 76% calc(100% - 11px), 69% 100%, 62% calc(100% - 12px), 55% calc(100% - 1px), 49% calc(100% - 11px), 42% 100%, 35% calc(100% - 10px), 28% calc(100% - 1px), 21% calc(100% - 12px), 14% 100%, 7% calc(100% - 10px), 0% 100%
+      );
+    }
+
+    /* Внутренняя элегантная рамка */
+    .hero-inner-frame {
+      border: 1px solid #d4c5b3;
+      outline: 1px solid #e8dfd3;
+      outline-offset: -5px;
+      padding: 25px 15px;
     }
 
     .save-the-date {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 3px;
       color: #8c7b6c;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       text-transform: uppercase;
     }
 
     h1 {
-      font-size: 42px;
+      font-size: 40px;
       color: #2c2520;
-      margin-bottom: 10px;
-      line-height: 1.1;
+      margin-bottom: 8px;
+      line-height: 1.15;
     }
 
     .event-date {
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: 2px;
       color: #a38f7d;
-      margin-bottom: 30px;
     }
 
     /* Кнопка музыки */
@@ -116,7 +139,7 @@
       color: #2c2520;
     }
 
-    /* === СЕКЦИЯ 2: КАЛЕНДАРЬ С ЭФФЕКТОМ РВАННОЙ БУМАГИ === */
+    /* === СЕКЦИЯ 2: КАЛЕНДАРЬ === */
     .torn-paper-wrapper {
       margin: 20px 0;
       position: relative;
@@ -124,11 +147,10 @@
     }
 
     .calendar-section {
-      background-color: #8fa193; /* Шалфейный цвет */
+      background-color: #8fa193;
       color: #1f2821;
       padding: 50px 25px;
       text-align: center;
-      /* CSS-маска рваного края */
       clip-path: polygon(
         0% 15px, 4% 0px, 9% 12px, 15% 3px, 20% 16px, 26% 2px, 32% 14px, 38% 1px, 44% 15px, 50% 3px, 56% 16px, 63% 2px, 70% 14px, 77% 1px, 84% 15px, 90% 2px, 96% 13px, 100% 0px,
         100% calc(100% - 12px), 95% 100%, 88% calc(100% - 15px), 82% calc(100% - 2px), 75% calc(100% - 14px), 69% 100%, 61% calc(100% - 15px), 54% calc(100% - 3px), 47% calc(100% - 16px), 40% 100%, 33% calc(100% - 12px), 26% calc(100% - 2px), 18% calc(100% - 15px), 11% 100%, 5% calc(100% - 12px), 0% 100%
@@ -216,7 +238,7 @@
       line-height: 1.5;
     }
 
-    /* === СЕКЦИЯ 4: ЛОКАЦИЯ И КАРТА === */
+    /* === СЕКЦИЯ 4: ЛОКАЦИЯ (УРГЕНЧ) === */
     .location-section h2 {
       font-size: 32px;
       margin-bottom: 10px;
@@ -294,30 +316,50 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
+    /* === ЭФФЕКТ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Единое бумажное полотно -->
   <div class="paper-scroll">
 
     <!-- Аудиофайл -->
     <audio id="bg-music" src="музыка.mp3" loop></audio>
 
-    <!-- 1. Главный экран -->
+    <!-- 1. Главный экран (Имена в рамке из рваной бумаги) -->
     <section class="section hero-section">
-      <p class="save-the-date">Save the Date</p>
-      <h1>Фарход & Мадина</h1>
-      <p class="event-date">05.09.2026</p>
       
+      <div class="hero-torn-wrapper">
+        <div class="hero-torn-card">
+          <div class="hero-inner-frame">
+            <p class="save-the-date">Save the Date</p>
+            <h1>Фарход & Мадина</h1>
+            <p class="event-date">05.09.2026</p>
+          </div>
+        </div>
+      </div>
+
       <button id="music-btn" class="music-btn" onclick="toggleMusic()">
         <span id="music-icon">🎵</span>
         <span id="music-text">Включить музыку</span>
       </button>
+
     </section>
 
-    <!-- 2. Календарь с рваным краем -->
-    <div class="torn-paper-wrapper">
+    <!-- 2. Календарь -->
+    <div class="torn-paper-wrapper reveal">
       <section class="calendar-section">
         <h2>Дорогие друзья!</h2>
         <p class="invitation-text">
@@ -353,43 +395,36 @@
     </div>
 
     <!-- 3. Программа дня -->
-    <section class="section program-section">
+    <section class="section program-section reveal">
       <h2>План дня</h2>
-      <div class="timeline-item">
-        <span class="time-badge">12:00</span>
-        <p><strong>Церемония</strong><br>Торжественная регистрация</p>
-      </div>
       <div class="timeline-item">
         <span class="time-badge">18:00</span>
         <p><strong>Welcome</strong><br>Сбор гостей и фуршет</p>
       </div>
       <div class="timeline-item">
-        <span class="time-badge">19:00</span>
+        <span class="time-badge">20:00</span>
         <p><strong>Праздничный ужин</strong><br>Вкусные блюда и программа</p>
       </div>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- 4. Локация -->
-    <section class="section location-section">
+    <!-- 4. Локация (Ургенч, Saltanat) -->
+    <section class="section location-section reveal">
       <h2>Локация</h2>
       <div class="venue-title">Ресторан «Saltanat»</div>
       <div class="venue-address">Хорезмская область, г. Ургенч, МСГ «Машъал»</div>
 
-      <!-- Интерактивная карта с меткой в Ургенче -->
       <div class="map-container">
         <iframe src="https://yandex.ru/map-widget/v1/?ll=60.625518%2C41.542970&z=16&pt=60.625518%2C41.542970%2Cpm2rdm~60.625518%2C41.542970" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
       </div>
-      
-      <!-- Прямые ссылки для построения маршрута -->
-      <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-        <a href="https://yandex.uz/maps/org/80074082736" target="_blank" class="map-btn">Открыть в Яндекс Картах</a>
-      </div>
+      <a href="https://yandex.uz/maps/org/80074082736" target="_blank" class="map-btn">Открыть в Яндекс Картах</a>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- 5. Таймер -->
-    <section class="section timer-section">
+    <section class="section timer-section reveal">
       <h2>До встречи осталось</h2>
       <div class="countdown-box" id="countdown">
         <div class="timer-unit"><span class="timer-value" id="days">0</span><span class="timer-label">дней</span></div>
@@ -400,9 +435,8 @@
 
   </div>
 
-  <!-- === СКРИПТЫ (JS) === -->
   <script>
-    // Управление музыкой
+    // Плеер
     function toggleMusic() {
       const audio = document.getElementById('bg-music');
       const icon = document.getElementById('music-icon');
@@ -422,7 +456,7 @@
       }
     }
 
-    // Таймер обратного отсчета до 5 сентября 2026 года
+    // Таймер обратного отсчета
     const targetDate = new Date('September 5, 2026 12:00:00').getTime();
 
     function updateTimer() {
@@ -444,6 +478,21 @@
 
     updateTimer();
     setInterval(updateTimer, 1000);
+
+    // Плавное появление при скролле (IntersectionObserver)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    document.querySelectorAll('.reveal').forEach(element => {
+      revealObserver.observe(element);
+    });
   </script>
 
 </body>
