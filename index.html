@@ -23,8 +23,8 @@
     }
 
     body {
-      background-color: #e3ded6;
-      color: #3d3630;
+      background-color: #b8b0a5;
+      color: #2c2520;
       font-family: 'Montserrat', sans-serif;
       display: flex;
       justify-content: center;
@@ -35,10 +35,11 @@
     .paper-scroll {
       max-width: 460px;
       width: 100%;
-      background: #f7f3ed;
-      box-shadow: 0 20px 50px rgba(50, 40, 30, 0.12);
+      background: #dcd6cd;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.35);
       position: relative;
       overflow: hidden;
+      padding: 20px 0 40px 0;
     }
 
     h1, h2, h3 {
@@ -46,208 +47,237 @@
       font-weight: 400;
     }
 
-    .section {
-      padding: 40px 25px;
+    /* === 3D-ОБЪЕМНЫЙ ЭФФЕКТ ДЛЯ РВАНОЙ БУМАГИ === */
+    .torn-card-wrapper {
+      position: relative;
+      margin: 30px 16px;
+      filter: 
+        drop-shadow(0 18px 18px rgba(20, 15, 10, 0.28))
+        drop-shadow(0 6px 6px rgba(0, 0, 0, 0.15))
+        drop-shadow(0 -2px 4px rgba(255, 255, 255, 0.5));
+    }
+
+    .torn-card {
+      background-color: #faf7f2;
+      background-image: 
+        radial-gradient(#e2dad0 1px, transparent 1px),
+        linear-gradient(180deg, #ffffff 0%, #f4ede4 100%);
+      background-size: 16px 16px, 100% 100%;
+      color: #221c17;
+      padding: 30px 20px;
+      position: relative;
+      
+      /* Нерегулярный рваный край по всему внешнему периметру */
+      clip-path: polygon(
+        0% 12px, 4% 2px, 9% 14px, 15% 1px, 22% 12px, 28% 3px, 35% 15px, 42% 1px, 49% 13px, 56% 2px, 63% 14px, 70% 1px, 77% 12px, 84% 2px, 91% 15px, 96% 2px, 100% 10px,
+        calc(100% - 3px) 18%, 100% 32%, calc(100% - 4px) 46%, 100% 62%, calc(100% - 3px) 78%, 100% 90%, calc(100% - 2px) 100%,
+        94% calc(100% - 10px), 87% 100%, 79% calc(100% - 12px), 72% calc(100% - 3px), 64% calc(100% - 14px), 55% 100%, 47% calc(100% - 11px), 39% calc(100% - 2px), 31% calc(100% - 13px), 22% 100%, 13% calc(100% - 10px), 0% 100%,
+        3px 88%, 0% 72%, 4px 56%, 0% 42%, 3px 26%
+      );
+    }
+
+    /* 3D-Загнутый уголок для карточек */
+    .torn-card::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 51%, #c2b5a5 100%);
+      box-shadow: -4px 4px 8px rgba(0,0,0,0.25);
+      pointer-events: none;
+    }
+
+    .inner-frame {
+      border: 1px solid #d3c6b5;
+      outline: 1px dashed #b8a793;
+      outline-offset: -6px;
+      padding: 25px 15px;
       text-align: center;
       position: relative;
     }
 
-    .section-divider {
-      height: 1px;
-      width: 60%;
-      margin: 0 auto;
-      background: linear-gradient(to right, transparent, #dcd3c5, transparent);
-    }
-
-    /* === СЕКЦИЯ 1: HERO (ИМЕНА В РВАНОЙ РАМКЕ) === */
+    /* === СЕКЦИЯ 1: HERO (ИМЕНА) === */
     .hero-section {
-      padding-top: 45px;
-      padding-bottom: 25px;
-    }
-
-    /* Обёртка с тенью для рваной бумаги */
-    .hero-torn-wrapper {
-      margin: 15px 10px 25px 10px;
-      position: relative;
-      filter: drop-shadow(0 10px 18px rgba(60, 50, 40, 0.12));
-    }
-
-    /* Карточка из рваной бумаги с именами */
-    .hero-torn-card {
-      background-color: #ffffff;
-      background-image: radial-gradient(#f3ede4 1px, transparent 1px);
-      background-size: 16px 16px;
-      padding: 35px 20px;
-      /* CSS-маска рваного края */
-      clip-path: polygon(
-        0% 12px, 3% 2px, 8% 10px, 14% 1px, 20% 12px, 26% 2px, 32% 11px, 39% 1px, 45% 12px, 51% 2px, 58% 11px, 64% 1px, 71% 12px, 77% 2px, 83% 10px, 90% 1px, 96% 11px, 100% 0px,
-        100% calc(100% - 10px), 95% 100%, 89% calc(100% - 12px), 82% calc(100% - 2px), 76% calc(100% - 11px), 69% 100%, 62% calc(100% - 12px), 55% calc(100% - 1px), 49% calc(100% - 11px), 42% 100%, 35% calc(100% - 10px), 28% calc(100% - 1px), 21% calc(100% - 12px), 14% 100%, 7% calc(100% - 10px), 0% 100%
-      );
-    }
-
-    /* Внутренняя элегантная рамка */
-    .hero-inner-frame {
-      border: 1px solid #d4c5b3;
-      outline: 1px solid #e8dfd3;
-      outline-offset: -5px;
-      padding: 25px 15px;
+      text-align: center;
+      padding: 10px 0;
     }
 
     .save-the-date {
       font-size: 12px;
       letter-spacing: 3px;
       color: #8c7b6c;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 42px;
       color: #2c2520;
-      margin-bottom: 8px;
-      line-height: 1.15;
+      margin-bottom: 6px;
+      line-height: 1.1;
     }
 
     .event-date {
-      font-size: 18px;
+      font-size: 20px;
       letter-spacing: 2px;
-      color: #a38f7d;
+      color: #8a7665;
+      margin-top: 8px;
     }
 
-    /* Кнопка музыки */
     .music-btn {
-      background-color: #f2ece4;
-      border: 1px solid #c8bcad;
-      color: #5c4f43;
-      padding: 10px 22px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 30px;
+      background: transparent;
+      border: none;
       cursor: pointer;
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.3s ease;
+      gap: 10px;
+      margin-top: 15px;
+      transition: transform 0.2s ease;
     }
 
     .music-btn:hover {
-      background-color: #e5dccf;
-      color: #2c2520;
+      transform: scale(1.05);
     }
 
-    /* === СЕКЦИЯ 2: КАЛЕНДАРЬ === */
-    .torn-paper-wrapper {
-      margin: 20px 0;
-      position: relative;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
+    .speaker-icon {
+      width: 44px;
+      height: 44px;
+      fill: #2c2520;
     }
 
-    .calendar-section {
-      background-color: #8fa193;
-      color: #1f2821;
-      padding: 50px 25px;
-      text-align: center;
-      clip-path: polygon(
-        0% 15px, 4% 0px, 9% 12px, 15% 3px, 20% 16px, 26% 2px, 32% 14px, 38% 1px, 44% 15px, 50% 3px, 56% 16px, 63% 2px, 70% 14px, 77% 1px, 84% 15px, 90% 2px, 96% 13px, 100% 0px,
-        100% calc(100% - 12px), 95% 100%, 88% calc(100% - 15px), 82% calc(100% - 2px), 75% calc(100% - 14px), 69% 100%, 61% calc(100% - 15px), 54% calc(100% - 3px), 47% calc(100% - 16px), 40% 100%, 33% calc(100% - 12px), 26% calc(100% - 2px), 18% calc(100% - 15px), 11% 100%, 5% calc(100% - 12px), 0% 100%
-      );
-    }
-
-    .calendar-section h2 {
-      font-size: 36px;
-      margin-bottom: 18px;
-      color: #172119;
-    }
-
-    .invitation-text {
-      font-size: 13px;
-      line-height: 1.7;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 30px;
-      color: #273329;
-    }
-
-    .month-title {
+    .music-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
+      font-size: 19px;
+      color: #2c2520;
+      letter-spacing: 0.5px;
+    }
+
+    /* === СЕКЦИЯ 2: КАЛЕНДАРЬ (ИЗУМРУДНО-ЗЕЛЕНАЯ) === */
+    .green-theme {
+      background-color: #2b3a32 !important;
+      background-image: 
+        radial-gradient(#3a4d43 1px, transparent 1px),
+        linear-gradient(180deg, #2d3e35 0%, #1e2822 100%) !important;
+      color: #e8eee9 !important;
+    }
+
+    .green-theme .inner-frame {
+      border: 1px solid #4a5d51 !important;
+      outline: 1px dashed #6b8273 !important;
+    }
+
+    .green-theme .card-title {
+      color: #ffffff !important;
+    }
+
+    .green-theme .card-subtitle {
+      color: #a3bead !important;
+    }
+
+    .invitation-text-green {
+      font-size: 12px;
+      line-height: 1.8;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 25px;
+      color: #c0d2c6;
+    }
+
+    .month-title-green {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
       letter-spacing: 2px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-transform: uppercase;
       font-weight: 600;
+      color: #ffffff;
     }
 
-    .calendar-grid {
+    .calendar-grid-green {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 10px 4px;
       align-items: center;
       justify-items: center;
-      font-size: 15px;
+      font-size: 16px;
       font-family: 'Cormorant Garamond', serif;
+      color: #dce7e0;
     }
 
-    .day-header {
+    .day-header-green {
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      margin-bottom: 8px;
+      color: #8ca394;
+      margin-bottom: 6px;
     }
 
-    .active-day {
+    .active-day-green {
       background-color: #ffffff;
-      color: #1f2821;
-      width: 34px;
-      height: 34px;
+      color: #1e2822;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
-    /* === СЕКЦИЯ 3: ПРОГРАММА ДНЯ === */
-    .program-section h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
-      color: #2c2520;
+    /* === СТРАНИЧНЫЕ РАЗДЕЛИТЕЛИ ВНУТРИ ЕДИНОГО БЛОКА === */
+    .card-title {
+      font-size: 30px;
+      color: #221c17;
+      margin-bottom: 4px;
+      line-height: 1.1;
     }
 
+    .card-subtitle {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8c7b6c;
+      margin-bottom: 20px;
+    }
+
+    .section-divider-clean {
+      height: 1px;
+      width: 80%;
+      margin: 35px auto;
+      background: linear-gradient(to right, transparent, #c9baa6, transparent);
+    }
+
+    /* Стили элементов внутренней программы */
     .timeline-item {
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .time-badge {
       display: inline-block;
-      background: #eae2d6;
-      color: #6e5e51;
-      padding: 3px 12px;
+      background: #e8dfd5;
+      color: #5c4f43;
+      padding: 4px 14px;
       border-radius: 12px;
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 6px;
+      letter-spacing: 1px;
     }
 
     .timeline-item p {
       font-size: 14px;
       line-height: 1.5;
-    }
-
-    /* === СЕКЦИЯ 4: ЛОКАЦИЯ (УРГЕНЧ) === */
-    .location-section h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      color: #3d3630;
     }
 
     .venue-title {
       font-size: 18px;
       font-weight: 600;
-      color: #4a4037;
+      color: #3d3630;
       margin-bottom: 4px;
     }
 
@@ -259,47 +289,45 @@
 
     .map-container {
       width: 100%;
-      height: 260px;
+      height: 240px;
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid #e0d7c8;
+      border: 1px solid #dcd3c5;
       margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .map-btn {
       display: inline-block;
-      background-color: #5c4f43;
+      background-color: #3d3630;
       color: #ffffff;
       text-decoration: none;
-      padding: 12px 24px;
+      padding: 12px 26px;
       font-size: 11px;
       border-radius: 25px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       transition: background 0.3s;
     }
 
     .map-btn:hover {
-      background-color: #3b322a;
-    }
-
-    /* === СЕКЦИЯ 5: ТАЙМЕР === */
-    .timer-section h2 {
-      font-size: 30px;
-      margin-bottom: 20px;
+      background-color: #1a1512;
     }
 
     .countdown-box {
       display: flex;
       justify-content: center;
       gap: 12px;
+      margin-top: 10px;
     }
 
     .timer-unit {
-      background: #f2ece4;
-      padding: 10px;
-      border-radius: 6px;
+      background: #ffffff;
+      padding: 12px 10px;
+      border-radius: 8px;
       min-width: 70px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border: 1px solid #eae3d9;
     }
 
     .timer-value {
@@ -308,6 +336,8 @@
       font-weight: 600;
       color: #2c2520;
       display: block;
+      line-height: 1;
+      margin-bottom: 4px;
     }
 
     .timer-label {
@@ -317,7 +347,7 @@
       letter-spacing: 1px;
     }
 
-    /* === ЭФФЕКТ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ === */
+    /* Анимация скролла */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -338,12 +368,11 @@
     <!-- Аудиофайл -->
     <audio id="bg-music" src="музыка.mp3" loop></audio>
 
-    <!-- 1. Главный экран (Имена в рамке из рваной бумаги) -->
-    <section class="section hero-section">
-      
-      <div class="hero-torn-wrapper">
-        <div class="hero-torn-card">
-          <div class="hero-inner-frame">
+    <!-- 1. HERO (Рваная карточка №1 — Имена) -->
+    <section class="hero-section">
+      <div class="torn-card-wrapper">
+        <div class="torn-card">
+          <div class="inner-frame">
             <p class="save-the-date">Save the Date</p>
             <h1>Фарход & Мадина</h1>
             <p class="event-date">05.09.2026</p>
@@ -351,112 +380,131 @@
         </div>
       </div>
 
+      <!-- Кнопка музыки -->
       <button id="music-btn" class="music-btn" onclick="toggleMusic()">
-        <span id="music-icon">🎵</span>
-        <span id="music-text">Включить музыку</span>
+        <svg class="speaker-icon" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+        <span id="music-text" class="music-text">Включить музыку</span>
       </button>
-
     </section>
 
-    <!-- 2. Календарь -->
-    <div class="torn-paper-wrapper reveal">
-      <section class="calendar-section">
-        <h2>Дорогие друзья!</h2>
-        <p class="invitation-text">
-          Один день в этом году будет для нас особенным, и мы хотим разделить его с вами.<br><br>
-          Ждем вас на празднике по случаю нашей свадьбы.
-        </p>
+    <!-- 2. КАЛЕНДАРЬ (Рваная карточка №2 — Изумрудно-зелёная) -->
+    <div class="torn-card-wrapper reveal">
+      <div class="torn-card green-theme">
+        <div class="inner-frame">
+          <h2 class="card-title">Дорогие друзья!</h2>
+          <p class="card-subtitle">Приглашение</p>
 
-        <div class="month-title">Сентябрь, 2026</div>
+          <p class="invitation-text-green">
+            Один день в этом году будет для нас особенным, и мы хотим разделить его с вами.<br><br>
+            Ждем вас на празднике по случаю нашей свадьбы.
+          </p>
 
-        <div class="calendar-grid">
-          <span class="day-header">ПН</span>
-          <span class="day-header">ВТ</span>
-          <span class="day-header">СР</span>
-          <span class="day-header">ЧТ</span>
-          <span class="day-header">ПТ</span>
-          <span class="day-header">СБ</span>
-          <span class="day-header">ВС</span>
+          <div class="month-title-green">Сентябрь, 2026</div>
 
-          <span></span>
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span class="active-day">5</span>
-          <span>6</span>
+          <div class="calendar-grid-green">
+            <span class="day-header-green">ПН</span>
+            <span class="day-header-green">ВТ</span>
+            <span class="day-header-green">СР</span>
+            <span class="day-header-green">ЧТ</span>
+            <span class="day-header-green">ПТ</span>
+            <span class="day-header-green">СБ</span>
+            <span class="day-header-green">ВС</span>
 
-          <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
-          <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
-          <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
-          <span>28</span><span>29</span><span>30</span>
+            <span></span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span class="active-day-green">5</span>
+            <span>6</span>
+
+            <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+            <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+            <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+            <span>28</span><span>29</span><span>30</span>
+          </div>
         </div>
-      </section>
+      </div>
     </div>
 
-    <!-- 3. Программа дня -->
-    <section class="section program-section reveal">
-      <h2>План дня</h2>
-      <div class="timeline-item">
-        <span class="time-badge">18:00</span>
-        <p><strong>Welcome</strong><br>Сбор гостей и фуршет</p>
+    <!-- 3. ЕДИНАЯ БОЛЬШАЯ КАРТОЧКА С РВАНЫМИ КРАЯМИ ПО ВНЕШНЕМУ КОНТУРУ -->
+    <div class="torn-card-wrapper reveal">
+      <div class="torn-card">
+        <div class="inner-frame">
+          
+          <!-- Подсекция: План дня -->
+          <div>
+            <h2 class="card-title">План дня</h2>
+            <p class="card-subtitle">Программа мероприятий</p>
+
+            <div class="timeline-item">
+              <span class="time-badge">18:00</span>
+              <p><strong>Welcome</strong><br>Сбор гостей и фуршет</p>
+            </div>
+            <div class="timeline-item">
+              <span class="time-badge">19:00</span>
+              <p><strong>Праздничный ужин</strong><br>Вкусные блюда и программа</p>
+            </div>
+          </div>
+
+          <div class="section-divider-clean"></div>
+
+          <!-- Подсекция: Локация -->
+          <div>
+            <h2 class="card-title">Локация</h2>
+            <p class="card-subtitle">Место проведения</p>
+
+            <div class="venue-title">Ресторан «Saltanat»</div>
+            <div class="venue-address">Хорезмская область, г. Ургенч, МСГ «Машъал»</div>
+
+            <div class="map-container">
+              <iframe src="https://yandex.ru/map-widget/v1/?ll=60.625518%2C41.542970&z=16&pt=60.625518%2C41.542970%2Cpm2rdm~60.625518%2C41.542970" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
+            </div>
+
+            <a href="https://yandex.uz/maps/org/80074082736" target="_blank" class="map-btn">Открыть в Яндекс Картах</a>
+          </div>
+
+          <div class="section-divider-clean"></div>
+
+          <!-- Подсекция: Таймер -->
+          <div>
+            <h2 class="card-title">До встречи</h2>
+            <p class="card-subtitle">Осталось времени</p>
+
+            <div class="countdown-box" id="countdown">
+              <div class="timer-unit"><span class="timer-value" id="days">0</span><span class="timer-label">дней</span></div>
+              <div class="timer-unit"><span class="timer-value" id="hours">0</span><span class="timer-label">часов</span></div>
+              <div class="timer-unit"><span class="timer-value" id="minutes">0</span><span class="timer-label">минут</span></div>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="timeline-item">
-        <span class="time-badge">20:00</span>
-        <p><strong>Праздничный ужин</strong><br>Вкусные блюда и программа</p>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- 4. Локация (Ургенч, Saltanat) -->
-    <section class="section location-section reveal">
-      <h2>Локация</h2>
-      <div class="venue-title">Ресторан «Saltanat»</div>
-      <div class="venue-address">Хорезмская область, г. Ургенч, МСГ «Машъал»</div>
-
-      <div class="map-container">
-        <iframe src="https://yandex.ru/map-widget/v1/?ll=60.625518%2C41.542970&z=16&pt=60.625518%2C41.542970%2Cpm2rdm~60.625518%2C41.542970" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
-      </div>
-      <a href="https://yandex.uz/maps/org/80074082736" target="_blank" class="map-btn">Открыть в Яндекс Картах</a>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- 5. Таймер -->
-    <section class="section timer-section reveal">
-      <h2>До встречи осталось</h2>
-      <div class="countdown-box" id="countdown">
-        <div class="timer-unit"><span class="timer-value" id="days">0</span><span class="timer-label">дней</span></div>
-        <div class="timer-unit"><span class="timer-value" id="hours">0</span><span class="timer-label">часов</span></div>
-        <div class="timer-unit"><span class="timer-value" id="minutes">0</span><span class="timer-label">минут</span></div>
-      </div>
-    </section>
+    </div>
 
   </div>
 
   <script>
-    // Плеер
+    // Управление музыкой
     function toggleMusic() {
       const audio = document.getElementById('bg-music');
-      const icon = document.getElementById('music-icon');
       const text = document.getElementById('music-text');
 
       if (audio.paused) {
         audio.play().then(() => {
-          icon.textContent = '⏸';
           text.textContent = 'Пауза';
         }).catch(err => {
           alert("Положите файл music.mp3 в одну папку с index.html");
         });
       } else {
         audio.pause();
-        icon.textContent = '🎵';
         text.textContent = 'Включить музыку';
       }
     }
 
-    // Таймер обратного отсчета
+    // Таймер обратного отсчета до 5 сентября 2026 года
     const targetDate = new Date('September 5, 2026 12:00:00').getTime();
 
     function updateTimer() {
@@ -479,7 +527,7 @@
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // Плавное появление при скролле (IntersectionObserver)
+    // Плавное появление элементов при прокрутке
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -487,7 +535,7 @@
         }
       });
     }, {
-      threshold: 0.15
+      threshold: 0.1
     });
 
     document.querySelectorAll('.reveal').forEach(element => {
