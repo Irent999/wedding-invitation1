@@ -1,547 +1,847 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Приглашение на свадьбу</title>
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madina · 05.09.2026</title>
 
-  <!-- Шрифты Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:ital,wght@1,400;1,600&family=Lora:ital,wght@1,400;1,500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* === ОБЩИЕ СТИЛИ СТРАНИЦЫ === */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: #b8b0a5;
-      color: #2c2520;
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px 0;
-    }
-
-    .paper-scroll {
-      max-width: 460px;
-      width: 100%;
-      background: #dcd6cd;
-      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.35);
-      position: relative;
-      overflow: hidden;
-      padding: 20px 0 40px 0;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-    }
-
-    /* === 3D-ОБЪЕМНЫЙ ЭФФЕКТ ДЛЯ РВАНОЙ БУМАГИ === */
-    .torn-card-wrapper {
-      position: relative;
-      margin: 30px 16px;
-      filter: 
-        drop-shadow(0 18px 18px rgba(20, 15, 10, 0.28))
-        drop-shadow(0 6px 6px rgba(0, 0, 0, 0.15))
-        drop-shadow(0 -2px 4px rgba(255, 255, 255, 0.5));
-    }
-
-    .torn-card {
-      background-color: #faf7f2;
-      background-image: 
-        radial-gradient(#e2dad0 1px, transparent 1px),
-        linear-gradient(180deg, #ffffff 0%, #f4ede4 100%);
-      background-size: 16px 16px, 100% 100%;
-      color: #221c17;
-      padding: 30px 20px;
-      position: relative;
+    <!-- Встроенные CSS стили -->
+    <style>
+      :root {
+        --gold: #c9a84c;
+        --gold-light: #e6ca65;
+        --bg-dark: #0d0d0d;
+        --card-bg: rgba(255, 255, 255, 0.04);
+        --text-main: #f0f0f0;
+        --text-muted: #a0a0a0;
+      }
       
-      /* Нерегулярный рваный край по всему внешнему периметру */
-      clip-path: polygon(
-        0% 12px, 4% 2px, 9% 14px, 15% 1px, 22% 12px, 28% 3px, 35% 15px, 42% 1px, 49% 13px, 56% 2px, 63% 14px, 70% 1px, 77% 12px, 84% 2px, 91% 15px, 96% 2px, 100% 10px,
-        calc(100% - 3px) 18%, 100% 32%, calc(100% - 4px) 46%, 100% 62%, calc(100% - 3px) 78%, 100% 90%, calc(100% - 2px) 100%,
-        94% calc(100% - 10px), 87% 100%, 79% calc(100% - 12px), 72% calc(100% - 3px), 64% calc(100% - 14px), 55% 100%, 47% calc(100% - 11px), 39% calc(100% - 2px), 31% calc(100% - 13px), 22% 100%, 13% calc(100% - 10px), 0% 100%,
-        3px 88%, 0% 72%, 4px 56%, 0% 42%, 3px 26%
-      );
-    }
+      /* Принудительный курсив для всех элементов */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-style: italic !important;
+      }
+      
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        font-family: 'Lora', serif;
+        overflow-x: hidden;
+      }
 
-    /* 3D-Загнутый уголок для карточек */
-    .torn-card::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      width: 38px;
-      height: 38px;
-      background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 51%, #c2b5a5 100%);
-      box-shadow: -4px 4px 8px rgba(0,0,0,0.25);
-      pointer-events: none;
-    }
+      /* Частицы canvas */
+      canvas#particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 1;
+      }
 
-    .inner-frame {
-      border: 1px solid #d3c6b5;
-      outline: 1px dashed #b8a793;
-      outline-offset: -6px;
-      padding: 25px 15px;
-      text-align: center;
-      position: relative;
-    }
+      section {
+        position: relative;
+        z-index: 2;
+        padding: 80px 20px;
+        text-align: center;
+      }
 
-    /* === СЕКЦИЯ 1: HERO (ИМЕНА) === */
-    .hero-section {
-      text-align: center;
-      padding: 10px 0;
-    }
+      /* Hero Section */
+      #hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0;
+        background-color: #000;
+      }
+      #hero-img-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      #hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 2;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+        padding: 20px;
+      }
+      .hero-label {
+        font-family: 'Cinzel', serif;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-size: 14px;
+        color: var(--gold-light);
+      }
+      .hero-names {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        color: #fff;
+        margin: 15px 0;
+        font-weight: 400;
+      }
+      .hero-date {
+        font-family: 'Cinzel', serif;
+        font-size: 22px;
+        letter-spacing: 6px;
+        color: var(--gold-light);
+        margin-top: 10px;
+      }
+      .hero-loc {
+        font-size: 15px;
+        color: #ddd;
+        margin-top: 8px;
+      }
+      .hero-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 10px 0;
+      }
+      .hd-gem {
+        width: 6px;
+        height: 6px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+      .scroll-hint {
+        position: absolute;
+        bottom: 25px;
+        z-index: 3;
+        font-family: 'Cinzel', serif;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .scroll-bar {
+        width: 1px;
+        height: 30px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+      }
 
-    .save-the-date {
-      font-size: 12px;
-      letter-spacing: 3px;
-      color: #8c7b6c;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
+      /* Countdown */
+      #countdown {
+        background: #111;
+        position: relative;
+      }
+      .cd-bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.12;
+      }
+      .section-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .section-tag {
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.3rem;
+        margin: 10px 0;
+        font-weight: 400;
+      }
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0 30px;
+      }
+      .div-gem {
+        width: 8px;
+        height: 8px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+      .countdown-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        font-family: 'Cinzel', serif;
+      }
+      .cd-num {
+        font-size: 2.5rem;
+        color: var(--gold-light);
+      }
+      .cd-lbl {
+        font-size: 12px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin-top: 5px;
+      }
+      .cd-sep {
+        font-size: 2rem;
+        color: var(--gold);
+      }
 
-    h1 {
-      font-size: 42px;
-      color: #2c2520;
-      margin-bottom: 6px;
-      line-height: 1.1;
-    }
+      /* Invitation */
+      .inv-side-img {
+        position: absolute;
+        left: 5%;
+        top: 20%;
+        width: 200px;
+        opacity: 0.15;
+        border-radius: 4px;
+        pointer-events: none;
+      }
+      .invite-card {
+        background: var(--card-bg);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        padding: 40px 30px;
+        border-radius: 4px;
+        line-height: 1.8;
+        font-size: 1.05rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
 
-    .event-date {
-      font-size: 20px;
-      letter-spacing: 2px;
-      color: #8a7665;
-      margin-top: 8px;
-    }
+      /* Photostrip */
+      #photostrip {
+        overflow: hidden;
+        padding: 40px 0;
+        background: #090909;
+      }
+      .strip-track {
+        display: flex;
+        gap: 15px;
+        width: max-content;
+        animation: scrollStrip 30s linear infinite;
+      }
+      @keyframes scrollStrip {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .strip-img {
+        width: 240px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
 
-    .music-btn {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-      transition: transform 0.2s ease;
-    }
+      /* Program */
+      #program { position: relative; }
+      .prog-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.1;
+      }
+      .program-list {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .prog-item {
+        display: flex;
+        gap: 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .prog-time {
+        font-family: 'Cinzel', serif;
+        font-size: 1.2rem;
+        color: var(--gold-light);
+        min-width: 70px;
+      }
+      .prog-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .prog-desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
 
-    .music-btn:hover {
-      transform: scale(1.05);
-    }
+      /* Gallery Grid */
+      .gallery-head { margin-bottom: 30px; }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 15px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .g-item {
+        height: 220px;
+        overflow: hidden;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .g-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s;
+      }
+      .g-item:hover img { transform: scale(1.06); }
 
-    .speaker-icon {
-      width: 44px;
-      height: 44px;
-      fill: #2c2520;
-    }
+      /* Dresscode */
+      #dresscode { position: relative; }
+      .dc-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.08;
+      }
+      .palette {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin: 30px 0;
+      }
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .sw-circle {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .sw-lbl {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
 
-    .music-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
-      color: #2c2520;
-      letter-spacing: 0.5px;
-    }
+      /* Location */
+      #location {
+        position: relative;
+        overflow: hidden;
+      }
+      #loc-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.2;
+      }
+      .venue-card {
+        background: rgba(0, 0, 0, 0.75);
+        border: 1px solid var(--gold);
+        padding: 40px;
+        border-radius: 6px;
+        display: inline-block;
+        max-width: 500px;
+        width: 100%;
+      }
+      .venue-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: var(--gold-light);
+        margin-bottom: 10px;
+      }
+      .venue-addr {
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .gold-btn {
+        display: inline-block;
+        padding: 12px 28px;
+        background: transparent;
+        border: 1px solid var(--gold);
+        color: var(--gold-light);
+        text-decoration: none;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 2px;
+        font-size: 12px;
+        transition: all 0.3s;
+      }
+      .gold-btn:hover {
+        background: var(--gold);
+        color: #000;
+      }
 
-    /* === СЕКЦИЯ 2: КАЛЕНДАРЬ (ИЗУМРУДНО-ЗЕЛЕНАЯ) === */
-    .green-theme {
-      background-color: #2b3a32 !important;
-      background-image: 
-        radial-gradient(#3a4d43 1px, transparent 1px),
-        linear-gradient(180deg, #2d3e35 0%, #1e2822 100%) !important;
-      color: #e8eee9 !important;
-    }
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.active { display: flex; }
+      .lightbox img {
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 4px;
+      }
+      .lb-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+      }
 
-    .green-theme .inner-frame {
-      border: 1px solid #4a5d51 !important;
-      outline: 1px dashed #6b8273 !important;
-    }
+      /* Audio Button */
+      .audio-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--gold);
+        border: none;
+        cursor: pointer;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+      .audio-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: #000;
+      }
 
-    .green-theme .card-title {
-      color: #ffffff !important;
-    }
+      /* Footer */
+      footer {
+        padding: 40px 20px;
+        background: #080808;
+        text-align: center;
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+      .footer-names {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--gold-light);
+      }
+      .footer-date {
+        margin-top: 5px;
+        font-family: 'Cinzel', serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Интерактивные частицы -->
+    <canvas id="particles"></canvas>
 
-    .green-theme .card-subtitle {
-      color: #a3bead !important;
-    }
-
-    .invitation-text-green {
-      font-size: 12px;
-      line-height: 1.8;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 25px;
-      color: #c0d2c6;
-    }
-
-    .month-title-green {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .calendar-grid-green {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px 4px;
-      align-items: center;
-      justify-items: center;
-      font-size: 16px;
-      font-family: 'Cormorant Garamond', serif;
-      color: #dce7e0;
-    }
-
-    .day-header-green {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      color: #8ca394;
-      margin-bottom: 6px;
-    }
-
-    .active-day-green {
-      background-color: #ffffff;
-      color: #1e2822;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    }
-
-    /* === СТРАНИЧНЫЕ РАЗДЕЛИТЕЛИ ВНУТРИ ЕДИНОГО БЛОКА === */
-    .card-title {
-      font-size: 30px;
-      color: #221c17;
-      margin-bottom: 4px;
-      line-height: 1.1;
-    }
-
-    .card-subtitle {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #8c7b6c;
-      margin-bottom: 20px;
-    }
-
-    .section-divider-clean {
-      height: 1px;
-      width: 80%;
-      margin: 35px auto;
-      background: linear-gradient(to right, transparent, #c9baa6, transparent);
-    }
-
-    /* Стили элементов внутренней программы */
-    .timeline-item {
-      margin-bottom: 20px;
-    }
-
-    .time-badge {
-      display: inline-block;
-      background: #e8dfd5;
-      color: #5c4f43;
-      padding: 4px 14px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      letter-spacing: 1px;
-    }
-
-    .timeline-item p {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #3d3630;
-    }
-
-    .venue-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #3d3630;
-      margin-bottom: 4px;
-    }
-
-    .venue-address {
-      font-size: 13px;
-      color: #7a6e63;
-      margin-bottom: 20px;
-    }
-
-    .map-container {
-      width: 100%;
-      height: 240px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #dcd3c5;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    .map-btn {
-      display: inline-block;
-      background-color: #3d3630;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 12px 26px;
-      font-size: 11px;
-      border-radius: 25px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: background 0.3s;
-    }
-
-    .map-btn:hover {
-      background-color: #1a1512;
-    }
-
-    .countdown-box {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .timer-unit {
-      background: #ffffff;
-      padding: 12px 10px;
-      border-radius: 8px;
-      min-width: 70px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      border: 1px solid #eae3d9;
-    }
-
-    .timer-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-      font-weight: 600;
-      color: #2c2520;
-      display: block;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .timer-label {
-      font-size: 10px;
-      color: #8c7b6c;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Анимация скролла */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="paper-scroll">
-
-    <!-- Аудиофайл -->
-    <audio id="bg-music" src="музыка.mp3" loop></audio>
-
-    <!-- 1. HERO (Рваная карточка №1 — Имена) -->
-    <section class="hero-section">
-      <div class="torn-card-wrapper">
-        <div class="torn-card">
-          <div class="inner-frame">
-            <p class="save-the-date">Save the Date</p>
-            <h1>Мадина</h1>
-            <p class="event-date">05.09.2026</p>
-          </div>
+    <!-- Главная секция -->
+    <section id="hero">
+      <img
+        id="hero-img-bg"
+        src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=80"
+        alt="wedding background"
+      />
+      <video
+        id="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        poster="https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=80"
+      >
+        <source
+          src="https://cdn.pixabay.com/video/2020/05/25/40149-424107446_large.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-label">Taklifnoma</span>
+        <div class="hero-div">
+          <div class="hd-gem"></div>
+          <div class="hd-gem" style="width: 4px; height: 4px; opacity: 0.4"></div>
+          <div class="hd-gem"></div>
         </div>
+        <h1 class="hero-names">Madina</h1>
+        <div class="hero-div">
+          <div class="hd-gem"></div>
+          <div class="hd-gem" style="width: 4px; height: 4px; opacity: 0.4"></div>
+          <div class="hd-gem"></div>
+        </div>
+        <p class="hero-date">05 · 09 · 2026</p>
+        <p class="hero-loc">Urganch, O'zbekiston</p>
       </div>
-
-      <!-- Кнопка музыки -->
-      <button id="music-btn" class="music-btn" onclick="toggleMusic()">
-        <svg class="speaker-icon" viewBox="0 0 24 24">
-          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-        </svg>
-        <span id="music-text" class="music-text">Включить музыку</span>
-      </button>
+      <div class="scroll-hint">
+        <span>SCROLL</span>
+        <div class="scroll-bar"></div>
+      </div>
     </section>
 
-    <!-- 2. КАЛЕНДАРЬ (Рваная карточка №2 — Изумрудно-зелёная) -->
-    <div class="torn-card-wrapper reveal">
-      <div class="torn-card green-theme">
-        <div class="inner-frame">
-          <h2 class="card-title">Дорогие друзья!</h2>
-          <p class="card-subtitle">Приглашение</p>
+    <!-- Таймер -->
+    <section id="countdown">
+      <img
+        class="cd-bg-img"
+        src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1400&q=60"
+        alt=""
+        loading="lazy"
+      />
+      <div class="section-inner">
+        <span class="section-tag">Vaqt hisobi</span>
+        <h2 class="section-title">Marosimgacha qolgan vaqt</h2>
+        <div class="divider"><div class="div-gem"></div></div>
+        <div class="countdown-grid">
+          <div class="cd-item">
+            <div class="cd-num" id="cd-days">00</div>
+            <div class="cd-lbl">Kun</div>
+          </div>
+          <div class="cd-sep">·</div>
+          <div class="cd-item">
+            <div class="cd-num" id="cd-hours">00</div>
+            <div class="cd-lbl">Soat</div>
+          </div>
+          <div class="cd-sep">·</div>
+          <div class="cd-item">
+            <div class="cd-num" id="cd-minutes">00</div>
+            <div class="cd-lbl">Daqiqa</div>
+          </div>
+          <div class="cd-sep">·</div>
+          <div class="cd-item">
+            <div class="cd-num" id="cd-seconds">00</div>
+            <div class="cd-lbl">Soniya</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <p class="invitation-text-green">
-            Один день в этом году будет для нас особенным, и мы хотим разделить его с вами.<br><br>
-            Ждем вас на празднике по случаю нашей свадьбы.
+    <!-- Приглашение -->
+    <section id="invitation">
+      <img
+        class="inv-side-img"
+        src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=70"
+        alt=""
+        loading="lazy"
+      />
+      <div class="section-inner">
+        <span class="section-tag">Taklif</span>
+        <h2 class="section-title">Qadrli mehmonlarimiz</h2>
+        <div class="divider"><div class="div-gem"></div></div>
+        <div class="invite-card">
+          <p class="invite-text">
+            Sizni tantanamizga taklif etishdan mamnunmiz!<br /><br />Bu kun
+            — bizning oilalarimiz uchun alohida ahamiyatga ega bo'lgan muhim
+            sana. Biz bu quvonchli lahzalarni eng yaqin va qadrli insonlar bilan
+            birga nishonlashni istaymiz.<br /><br />
           </p>
+        </div>
+      </div>
+    </section>
 
-          <div class="month-title-green">Сентябрь, 2026</div>
+    <!-- Лента с фото -->
+    <section id="photostrip">
+      <div class="strip-track">
+        <img class="strip-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1470290378698-263fa7ca1582?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=75" alt="" />
+        <img class="strip-img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt="" />
+      </div>
+    </section>
 
-          <div class="calendar-grid-green">
-            <span class="day-header-green">ПН</span>
-            <span class="day-header-green">ВТ</span>
-            <span class="day-header-green">СР</span>
-            <span class="day-header-green">ЧТ</span>
-            <span class="day-header-green">ПТ</span>
-            <span class="day-header-green">СБ</span>
-            <span class="day-header-green">ВС</span>
-
-            <span></span>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span class="active-day-green">5</span>
-            <span>6</span>
-
-            <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
-            <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
-            <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
-            <span>28</span><span>29</span><span>30</span>
+    <!-- Программа -->
+    <section id="program">
+      <img
+        class="prog-bg"
+        src="https://images.unsplash.com/photo-1481683002780-9e7e6b0a5b42?w=1400&q=55"
+        alt=""
+        loading="lazy"
+      />
+      <div class="section-inner">
+        <span class="section-tag">Kun rejasi</span>
+        <h2 class="section-title">Kunning dasturi</h2>
+        <div class="divider"><div class="div-gem"></div></div>
+        <div class="program-list">
+          <div class="prog-item">
+            <div class="prog-time">19:00</div>
+            <div>
+              <div class="prog-title">Kelish vaqti</div>
+              <div class="prog-desc">
+                Iltimos, o'zingiz bilan yaxshi kayfiyat va tabassumingizni olib keling
+              </div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-time">20:00</div>
+            <div>
+              <div class="prog-title">Kechki ovqat</div>
+              <div class="prog-desc"></div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery">
+      <div class="gallery-head">
+        <span class="section-tag">Rasmlar</span>
+        <h2 class="section-title">Foto to'plami</h2>
+        <div class="divider"><div class="div-gem"></div></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="" loading="lazy" /></div>
+        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=600&q=80" alt="" loading="lazy" /></div>
+        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80" alt="" loading="lazy" /></div>
+        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=900&q=80" alt="" loading="lazy" /></div>
+        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80" alt="" loading="lazy" /></div>
+        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" onclick="closeLb()">
+      <span class="lb-close">✕</span>
+      <img id="lb-img" src="" alt="" />
     </div>
 
-    <!-- 3. ЕДИНАЯ БОЛЬШАЯ КАРТОЧКА С РВАНЫМИ КРАЯМИ ПО ВНЕШНЕМУ КОНТУРУ -->
-    <div class="torn-card-wrapper reveal">
-      <div class="torn-card">
-        <div class="inner-frame">
-          
-          <!-- Подсекция: План дня -->
-          <div>
-            <h2 class="card-title">План дня</h2>
-            <p class="card-subtitle">Программа мероприятий</p>
-
-            <div class="timeline-item">
-              <span class="time-badge">19:00</span>
-              <p><strong>Welcome</strong></p>
-            </div>
-            <div class="timeline-item">
-              <span class="time-badge">20:00</span>
-              <p><strong>Праздничный ужин</strong></p>
-            </div>
+    <!-- Дресс-код -->
+    <section id="dresscode">
+      <img
+        class="dc-bg"
+        src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?w=800&q=65"
+        alt=""
+        loading="lazy"
+      />
+      <div class="section-inner">
+        <span class="section-tag">Kiyinish uslubi</span>
+        <h2 class="section-title">Dress Code</h2>
+        <div class="divider"><div class="div-gem"></div></div>
+        <div class="palette">
+          <div class="swatch">
+            <div class="sw-circle" style="background: #f5f5f0"></div>
+            <span class="sw-lbl">Ivory</span>
           </div>
-
-          <div class="section-divider-clean"></div>
-
-          <!-- Подсекция: Локация -->
-          <div>
-            <h2 class="card-title">Локация</h2>
-            <p class="card-subtitle">Место проведения</p>
-
-            <div class="venue-title">Ресторан «Saltanat»</div>
-            <div class="venue-address">Хорезмская область, г. Ургенч, МСГ «Машъал»</div>
-
-            <div class="map-container">
-              <iframe src="https://yandex.ru/map-widget/v1/?ll=60.625518%2C41.542970&z=16&pt=60.625518%2C41.542970%2Cpm2rdm~60.625518%2C41.542970" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
-            </div>
-
-            <a href="https://yandex.uz/maps/org/80074082736" target="_blank" class="map-btn">Открыть в Яндекс Картах</a>
+          <div class="swatch">
+            <div class="sw-circle" style="background: #c0c0c0"></div>
+            <span class="sw-lbl">Silver</span>
           </div>
-
-          <div class="section-divider-clean"></div>
-
-          <!-- Подсекция: Таймер -->
-          <div>
-            <h2 class="card-title">До встречи</h2>
-            <p class="card-subtitle">Осталось времени</p>
-
-            <div class="countdown-box" id="countdown">
-              <div class="timer-unit"><span class="timer-value" id="days">0</span><span class="timer-label">дней</span></div>
-              <div class="timer-unit"><span class="timer-value" id="hours">0</span><span class="timer-label">часов</span></div>
-              <div class="timer-unit"><span class="timer-value" id="minutes">0</span><span class="timer-label">минут</span></div>
-            </div>
+          <div class="swatch">
+            <div class="sw-circle" style="background: #1a1a1a; border-color: rgba(201, 168, 76, 0.6)"></div>
+            <span class="sw-lbl">Noir</span>
           </div>
-
+          <div class="swatch">
+            <div class="sw-circle" style="background: #583513"></div>
+            <span class="sw-lbl">Walnut</span>
+          </div>
+          <div class="swatch">
+            <div class="sw-circle" style="background: #c9a84c"></div>
+            <span class="sw-lbl">Gold</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-  </div>
+    <!-- Локация -->
+    <section id="location">
+      <video id="loc-video" autoplay muted loop playsinline webkit-playsinline>
+        <source
+          src="https://cdn.pixabay.com/video/2020/05/25/40149-424107446_large.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="section-inner">
+        <span class="section-tag">Manzil</span>
+        <h2 class="section-title">Restoran manzili</h2>
+        <div class="divider"><div class="div-gem"></div></div>
+        <div class="venue-card">
+          <div class="venue-name">Saltanat</div>
+          <div class="venue-addr">
+            Mash'al MFY<br />Urganch shahri, O'zbekiston<br /><br /><strong
+              style="
+                color: var(--gold-light);
+                font-family: 'Cinzel', serif;
+                font-size: 13px;
+                letter-spacing: 2px;
+              "
+              >05 Sentyabr 2026 · 19:00</strong
+            >
+          </div>
+          <a
+            href="https://www.google.com/maps?q=41.542970,60.625518"
+            target="_blank"
+            class="gold-btn"
+            >Xaritadan ko'rish</a
+          >
+        </div>
+      </div>
+    </section>
 
-  <script>
-    // Управление музыкой
-    function toggleMusic() {
-      const audio = document.getElementById('bg-music');
-      const text = document.getElementById('music-text');
+    <!-- Кнопка и элемент аудио -->
+    <button class="audio-btn" id="audioBtn" onclick="toggleAudio()" title="Musiqa">
+      <svg id="audioIcon" viewBox="0 0 24 24">
+        <polygon points="5,3 19,12 5,21" />
+      </svg>
+    </button>
+    
+    <!-- Замените music.mp3 на путь/название Вашего аудиофайла в репозитории -->
+    <audio id="bgAudio" loop preload="auto">
+      <source src="музыка.mp3" type="audio/mpeg" />
+      Ваш браузер не поддерживает аудио.
+    </audio>
 
-      if (audio.paused) {
-        audio.play().then(() => {
-          text.textContent = 'Пауза';
-        }).catch(err => {
-          alert("Положите файл music.mp3 в одну папку с index.html");
+    <!-- Подвал -->
+    <footer>
+      <div class="footer-names">Madina</div>
+      <div class="footer-date">05 · 09 · 2026</div>
+      <div class="divider" style="margin: 14px auto">
+        <div class="div-gem"></div>
+      </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script>
+      // 1. Принудительный запуск фоновых видео
+      document.addEventListener('DOMContentLoaded', () => {
+        const videos = document.querySelectorAll('video');
+        videos.forEach((video) => {
+          video.muted = true;
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              document.addEventListener('touchstart', () => video.play(), { once: true });
+              document.addEventListener('click', () => video.play(), { once: true });
+            });
+          }
         });
-      } else {
-        audio.pause();
-        text.textContent = 'Включить музыку';
-      }
-    }
-
-    // Таймер обратного отсчета до 5 сентября 2026 года
-    const targetDate = new Date('September 5, 2026 12:00:00').getTime();
-
-    function updateTimer() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff > 0) {
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-        document.getElementById('days').innerText = d;
-        document.getElementById('hours').innerText = h;
-        document.getElementById('minutes').innerText = m;
-      } else {
-        document.getElementById('countdown').innerHTML = "<p>Этот день настал!</p>";
-      }
-    }
-
-    updateTimer();
-    setInterval(updateTimer, 1000);
-
-    // Плавное появление элементов при прокрутке
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
       });
-    }, {
-      threshold: 0.1
-    });
 
-    document.querySelectorAll('.reveal').forEach(element => {
-      revealObserver.observe(element);
-    });
-  </script>
+      // 2. Анимация золотых частиц Canvas
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
 
-</body>
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      for (let i = 0; i < 45; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2 + 0.5,
+          d: Math.random() * 1.5 + 0.5,
+          opacity: Math.random() * 0.5 + 0.2,
+        });
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(201, 168, 76, ${p.opacity})`;
+          ctx.fill();
+          p.y -= p.d;
+          if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+          }
+        });
+        requestAnimationFrame(drawParticles);
+      }
+      drawParticles();
+
+      // 3. Обратный отсчет до 05.09.2026
+      const targetDate = new Date('September 05, 2026 19:00:00').getTime();
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          document.getElementById('cd-days').innerText = days.toString().padStart(2, '0');
+          document.getElementById('cd-hours').innerText = hours.toString().padStart(2, '0');
+          document.getElementById('cd-minutes').innerText = minutes.toString().padStart(2, '0');
+          document.getElementById('cd-seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+      }
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      // 4. Лайтбокс
+      function openLb(el) {
+        const img = el.querySelector('img');
+        document.getElementById('lb-img').src = img.src;
+        document.getElementById('lightbox').classList.add('active');
+      }
+      function closeLb() {
+        document.getElementById('lightbox').classList.remove('active');
+      }
+
+      // 5. Музыка
+      function toggleAudio() {
+        const audio = document.getElementById('bgAudio');
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      }
+    </script>
+  </body>
 </html>
