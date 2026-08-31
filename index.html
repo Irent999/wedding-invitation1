@@ -13,7 +13,6 @@
       rel="stylesheet"
     />
 
-    <!-- Встроенные CSS стили -->
     <style>
       :root {
         --gold: #c9a84c;
@@ -24,7 +23,6 @@
         --text-muted: #a0a0a0;
       }
 
-      /* Принудительный курсив для всех элементов */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -39,7 +37,6 @@
         overflow-x: hidden;
       }
 
-      /* Частицы canvas */
       canvas#particles {
         position: fixed;
         top: 0;
@@ -68,6 +65,7 @@
         padding: 0;
         background-color: #000;
       }
+
       #hero-img-bg {
         position: absolute;
         top: 0;
@@ -77,6 +75,7 @@
         object-fit: cover;
         z-index: 0;
       }
+
       #hero-video {
         position: absolute;
         top: 0;
@@ -86,18 +85,21 @@
         object-fit: cover;
         z-index: 1;
       }
+
       .hero-overlay {
         position: absolute;
         inset: 0;
         background: rgba(0, 0, 0, 0.55);
         z-index: 2;
       }
+
       .hero-content {
         position: relative;
         z-index: 3;
         max-width: 800px;
         padding: 20px;
       }
+
       .hero-label {
         font-family: 'Cinzel', serif;
         letter-spacing: 4px;
@@ -105,6 +107,7 @@
         font-size: 14px;
         color: var(--gold-light);
       }
+
       .hero-names {
         font-family: 'Playfair Display', serif;
         font-size: clamp(3rem, 7vw, 5.5rem);
@@ -112,6 +115,7 @@
         margin: 15px 0;
         font-weight: 400;
       }
+
       .hero-date {
         font-family: 'Cinzel', serif;
         font-size: 22px;
@@ -119,11 +123,13 @@
         color: var(--gold-light);
         margin-top: 10px;
       }
+
       .hero-loc {
         font-size: 15px;
         color: #ddd;
         margin-top: 8px;
       }
+
       .hero-div {
         display: flex;
         align-items: center;
@@ -131,12 +137,14 @@
         gap: 8px;
         margin: 10px 0;
       }
+
       .hd-gem {
         width: 6px;
         height: 6px;
         background: var(--gold);
         transform: rotate(45deg);
       }
+
       .scroll-hint {
         position: absolute;
         bottom: 25px;
@@ -150,6 +158,7 @@
         align-items: center;
         gap: 8px;
       }
+
       .scroll-bar {
         width: 1px;
         height: 30px;
@@ -161,6 +170,7 @@
         background: #111;
         position: relative;
       }
+
       .cd-bg-img {
         position: absolute;
         inset: 0;
@@ -169,12 +179,14 @@
         object-fit: cover;
         opacity: 0.12;
       }
+
       .section-inner {
         position: relative;
         z-index: 2;
         max-width: 900px;
         margin: 0 auto;
       }
+
       .section-tag {
         font-family: 'Cinzel', serif;
         font-size: 12px;
@@ -182,24 +194,28 @@
         color: var(--gold);
         text-transform: uppercase;
       }
+
       .section-title {
         font-family: 'Playfair Display', serif;
         font-size: 2.3rem;
         margin: 10px 0;
         font-weight: 400;
       }
+
       .divider {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 15px 0 30px;
       }
+
       .div-gem {
         width: 8px;
         height: 8px;
         background: var(--gold);
         transform: rotate(45deg);
       }
+
       .countdown-grid {
         display: flex;
         justify-content: center;
@@ -207,16 +223,19 @@
         gap: 25px;
         font-family: 'Cinzel', serif;
       }
+
       .cd-num {
         font-size: 2.5rem;
         color: var(--gold-light);
       }
+
       .cd-lbl {
         font-size: 12px;
         color: var(--text-muted);
         text-transform: uppercase;
         margin-top: 5px;
       }
+
       .cd-sep {
         font-size: 2rem;
         color: var(--gold);
@@ -232,6 +251,7 @@
         border-radius: 4px;
         pointer-events: none;
       }
+
       .invite-card {
         background: var(--card-bg);
         border: 1px solid rgba(201, 168, 76, 0.25);
@@ -247,6 +267,7 @@
       #program {
         position: relative;
       }
+
       .prog-bg {
         position: absolute;
         inset: 0;
@@ -255,27 +276,32 @@
         object-fit: cover;
         opacity: 0.1;
       }
+
       .program-list {
         max-width: 600px;
         margin: 0 auto;
         text-align: left;
       }
+
       .prog-item {
         display: flex;
         gap: 20px;
         padding: 20px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
+
       .prog-time {
         font-family: 'Cinzel', serif;
         font-size: 1.2rem;
         color: var(--gold-light);
         min-width: 70px;
       }
+
       .prog-title {
         font-weight: 600;
         margin-bottom: 4px;
       }
+
       .prog-desc {
         font-size: 0.95rem;
         color: var(--text-muted);
@@ -285,6 +311,7 @@
       #dresscode {
         position: relative;
       }
+
       .dc-bg {
         position: absolute;
         inset: 0;
@@ -293,6 +320,7 @@
         object-fit: cover;
         opacity: 0.08;
       }
+
       .palette {
         display: flex;
         justify-content: center;
@@ -300,18 +328,21 @@
         flex-wrap: wrap;
         margin: 30px 0;
       }
+
       .swatch {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 8px;
       }
+
       .sw-circle {
         width: 45px;
         height: 45px;
         border-radius: 50%;
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
+
       .sw-lbl {
         font-size: 12px;
         color: var(--text-muted);
@@ -322,6 +353,7 @@
         position: relative;
         overflow: hidden;
       }
+
       #loc-video {
         position: absolute;
         inset: 0;
@@ -330,6 +362,7 @@
         object-fit: cover;
         opacity: 0.2;
       }
+
       .venue-card {
         background: rgba(0, 0, 0, 0.75);
         border: 1px solid var(--gold);
@@ -339,16 +372,19 @@
         max-width: 500px;
         width: 100%;
       }
+
       .venue-name {
         font-family: 'Playfair Display', serif;
         font-size: 2rem;
         color: var(--gold-light);
         margin-bottom: 10px;
       }
+
       .venue-addr {
         line-height: 1.6;
         margin-bottom: 20px;
       }
+
       .gold-btn {
         display: inline-block;
         padding: 12px 28px;
@@ -361,6 +397,7 @@
         font-size: 12px;
         transition: all 0.3s;
       }
+
       .gold-btn:hover {
         background: var(--gold);
         color: #000;
@@ -383,6 +420,7 @@
         justify-content: center;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       }
+
       .audio-btn svg {
         width: 20px;
         height: 20px;
@@ -397,11 +435,13 @@
         font-size: 14px;
         color: var(--text-muted);
       }
+
       .footer-names {
         font-family: 'Playfair Display', serif;
         font-size: 1.5rem;
         color: var(--gold-light);
       }
+
       .footer-date {
         margin-top: 5px;
         font-family: 'Cinzel', serif;
@@ -428,9 +468,7 @@
         webkit-playsinline
         poster="https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=80"
       >
-        <source
-         src="bg-video.mp4" type="video/mp4" />
-        />
+        <source src="bg-video.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -511,10 +549,7 @@
         <div class="divider"><div class="div-gem"></div></div>
         <div class="invite-card">
           <p class="invite-text">
-            Sizni tantanamizga taklif etishdan mamnunmiz!<br /><br />Bu kun
-            — bizning oilalarimiz uchun alohida ahamiyatga ega bo'lgan muhim
-            sana. Biz bu quvonchli lahzalarni eng yaqin va qadrli insonlar bilan
-            birga nishonlashni istaymiz.<br /><br />
+            Sizni tantanamizga taklif etishdan mamnunmiz!<br /><br />Bu kun — bizning oilalarimiz uchun alohida ahamiyatga ega bo'lgan muhim sana. Biz bu quvonchli lahzalarni eng yaqin va qadrli insonlar bilan birga nishonlashni istaymiz.<br /><br />
           </p>
         </div>
       </div>
@@ -538,8 +573,7 @@
             <div>
               <div class="prog-title">Kelish vaqti</div>
               <div class="prog-desc">
-                Iltimos, o'zingiz bilan yaxshi kayfiyat va tabassumingizni olib
-                keling
+                Iltimos, o'zingiz bilan yaxshi kayfiyat va tabassumingizni olib keling
               </div>
             </div>
           </div>
@@ -644,9 +678,9 @@
       </svg>
     </button>
 
-    <!-- Аудио с автоматическим воспроизведением -->
-    <audio id="bgAudio" autoplay loop preload="auto">
-      <source src="музыка.mp3" type="audio/mpeg" />
+    <!-- Аудио файл (Переименуйте файл на GitHub в music.mp3!) -->
+    <audio id="bgAudio" loop preload="auto">
+      <source src="music.mp3" type="audio/mpeg" />
       Ваш браузер не поддерживает аудио.
     </audio>
 
@@ -661,55 +695,40 @@
 
     <!-- Скрипты -->
     <script>
-      // 1. Автоматический запуск музыки + Обход автоплей-политики браузеров
+      // 1. Обход автоплей-политики браузера для музыки
       const audio = document.getElementById('bgAudio');
 
-      function tryPlayAudio() {
-        if (audio) {
-          const promise = audio.play();
-          if (promise !== undefined) {
-            promise.catch(() => {
-              // Если браузер заблокировал автоплей при старте, воспроизводим при первом скролле/клике
-              const startOnUserAction = () => {
-                audio.play();
-                document.removeEventListener('click', startOnUserAction);
-                document.removeEventListener('touchstart', startOnUserAction);
-                document.removeEventListener('scroll', startOnUserAction);
-              };
-              document.addEventListener('click', startOnUserAction);
-              document.addEventListener('touchstart', startOnUserAction);
-              document.addEventListener('scroll', startOnUserAction);
-            });
-          }
+      function enableAudioOnInteraction() {
+        if (audio && audio.paused) {
+          audio.play().catch(() => {});
         }
+        ['click', 'touchstart', 'scroll', 'keydown'].forEach((event) => {
+          document.removeEventListener(event, enableAudioOnInteraction);
+        });
       }
 
-      document.addEventListener('DOMContentLoaded', () => {
-        tryPlayAudio();
+      ['click', 'touchstart', 'scroll', 'keydown'].forEach((event) => {
+        document.addEventListener(event, enableAudioOnInteraction, { once: true });
+      });
 
-        // Запуск фоновых видео
+      // Запуск видео элементов
+      document.addEventListener('DOMContentLoaded', () => {
         const videos = document.querySelectorAll('video');
         videos.forEach((video) => {
           video.muted = true;
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              document.addEventListener(
-                'touchstart',
-                () => video.play(),
-                { once: true }
-              );
-              document.addEventListener(
-                'click',
-                () => video.play(),
-                { once: true }
-              );
-            });
-          }
+          video.play().catch(() => {
+            const playOnTouch = () => {
+              video.play();
+              document.removeEventListener('touchstart', playOnTouch);
+              document.removeEventListener('click', playOnTouch);
+            };
+            document.addEventListener('touchstart', playOnTouch);
+            document.addEventListener('click', playOnTouch);
+          });
         });
       });
 
-      // 2. Анимация золотых частиц Canvas
+      // 2. Частицы Canvas
       const canvas = document.getElementById('particles');
       const ctx = canvas.getContext('2d');
       let particles = [];
