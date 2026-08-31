@@ -631,7 +631,7 @@
       </div>
     </section>
 
-    <!-- Локация -->
+   <!-- Локация -->
     <section id="location">
       <video id="loc-video" autoplay muted loop playsinline webkit-playsinline>
         <source
@@ -657,15 +657,28 @@
             >
           </div>
           <a
-            href="https://www.google.com/maps?q=41.542970,60.625518"
+            href="https://maps.app.goo.gl/RBQy2TWuuMPgwMoU8"
             target="_blank"
             class="gold-btn"
+            style="margin-bottom: 20px;"
             >Xaritadan ko'rish</a
           >
+
+          <!-- Встроенная интерактивная карта Google Maps -->
+          <div style="border: 1px solid var(--gold); border-radius: 6px; overflow: hidden; margin-top: 10px;">
+            <iframe
+              src="https://maps.google.com/maps?q=41.542970,60.625518&z=15&output=embed"
+              width="100%"
+              height="280"
+              style="border:0; display: block;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
-
     <!-- Кнопка управления музыкой -->
     <button
       class="audio-btn"
