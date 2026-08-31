@@ -23,7 +23,7 @@
         --text-main: #f0f0f0;
         --text-muted: #a0a0a0;
       }
-      
+
       /* Принудительный курсив для всех элементов */
       * {
         box-sizing: border-box;
@@ -31,7 +31,7 @@
         padding: 0;
         font-style: italic !important;
       }
-      
+
       body {
         background-color: var(--bg-dark);
         color: var(--text-main);
@@ -243,31 +243,10 @@
         margin: 0 auto;
       }
 
-      /* Photostrip */
-      #photostrip {
-        overflow: hidden;
-        padding: 40px 0;
-        background: #090909;
-      }
-      .strip-track {
-        display: flex;
-        gap: 15px;
-        width: max-content;
-        animation: scrollStrip 30s linear infinite;
-      }
-      @keyframes scrollStrip {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-      .strip-img {
-        width: 240px;
-        height: 160px;
-        object-fit: cover;
-        border-radius: 4px;
-      }
-
       /* Program */
-      #program { position: relative; }
+      #program {
+        position: relative;
+      }
       .prog-bg {
         position: absolute;
         inset: 0;
@@ -302,31 +281,10 @@
         color: var(--text-muted);
       }
 
-      /* Gallery Grid */
-      .gallery-head { margin-bottom: 30px; }
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 15px;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-      .g-item {
-        height: 220px;
-        overflow: hidden;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      .g-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s;
-      }
-      .g-item:hover img { transform: scale(1.06); }
-
       /* Dresscode */
-      #dresscode { position: relative; }
+      #dresscode {
+        position: relative;
+      }
       .dc-bg {
         position: absolute;
         inset: 0;
@@ -408,31 +366,6 @@
         color: #000;
       }
 
-      /* Lightbox */
-      .lightbox {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 999;
-        display: none;
-        align-items: center;
-        justify-content: center;
-      }
-      .lightbox.active { display: flex; }
-      .lightbox img {
-        max-width: 90%;
-        max-height: 80vh;
-        border-radius: 4px;
-      }
-      .lb-close {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        color: #fff;
-        font-size: 24px;
-        cursor: pointer;
-      }
-
       /* Audio Button */
       .audio-btn {
         position: fixed;
@@ -505,13 +438,19 @@
         <span class="hero-label">Taklifnoma</span>
         <div class="hero-div">
           <div class="hd-gem"></div>
-          <div class="hd-gem" style="width: 4px; height: 4px; opacity: 0.4"></div>
+          <div
+            class="hd-gem"
+            style="width: 4px; height: 4px; opacity: 0.4"
+          ></div>
           <div class="hd-gem"></div>
         </div>
         <h1 class="hero-names">Madina</h1>
         <div class="hero-div">
           <div class="hd-gem"></div>
-          <div class="hd-gem" style="width: 4px; height: 4px; opacity: 0.4"></div>
+          <div
+            class="hd-gem"
+            style="width: 4px; height: 4px; opacity: 0.4"
+          ></div>
           <div class="hd-gem"></div>
         </div>
         <p class="hero-date">05 · 09 · 2026</p>
@@ -582,21 +521,6 @@
       </div>
     </section>
 
-    <!-- Лента с фото -->
-    <section id="photostrip">
-      <div class="strip-track">
-        <img class="strip-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1470290378698-263fa7ca1582?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=75" alt="" />
-        <img class="strip-img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt="" />
-      </div>
-    </section>
-
     <!-- Программа -->
     <section id="program">
       <img
@@ -615,7 +539,8 @@
             <div>
               <div class="prog-title">Kelish vaqti</div>
               <div class="prog-desc">
-                Iltimos, o'zingiz bilan yaxshi kayfiyat va tabassumingizni olib keling
+                Iltimos, o'zingiz bilan yaxshi kayfiyat va tabassumingizni olib
+                keling
               </div>
             </div>
           </div>
@@ -629,28 +554,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Галерея -->
-    <section id="gallery">
-      <div class="gallery-head">
-        <span class="section-tag">Rasmlar</span>
-        <h2 class="section-title">Foto to'plami</h2>
-        <div class="divider"><div class="div-gem"></div></div>
-      </div>
-      <div class="gallery-grid">
-        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="" loading="lazy" /></div>
-        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=600&q=80" alt="" loading="lazy" /></div>
-        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80" alt="" loading="lazy" /></div>
-        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=900&q=80" alt="" loading="lazy" /></div>
-        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80" alt="" loading="lazy" /></div>
-        <div class="g-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="" loading="lazy" /></div>
-      </div>
-    </section>
-
-    <div class="lightbox" id="lightbox" onclick="closeLb()">
-      <span class="lb-close">✕</span>
-      <img id="lb-img" src="" alt="" />
-    </div>
 
     <!-- Дресс-код -->
     <section id="dresscode">
@@ -674,7 +577,13 @@
             <span class="sw-lbl">Silver</span>
           </div>
           <div class="swatch">
-            <div class="sw-circle" style="background: #1a1a1a; border-color: rgba(201, 168, 76, 0.6)"></div>
+            <div
+              class="sw-circle"
+              style="
+                background: #1a1a1a;
+                border-color: rgba(201, 168, 76, 0.6);
+              "
+            ></div>
             <span class="sw-lbl">Noir</span>
           </div>
           <div class="swatch">
@@ -724,16 +633,21 @@
       </div>
     </section>
 
-    <!-- Кнопка и элемент аудио -->
-    <button class="audio-btn" id="audioBtn" onclick="toggleAudio()" title="Musiqa">
+    <!-- Кнопка управления музыкой -->
+    <button
+      class="audio-btn"
+      id="audioBtn"
+      onclick="toggleAudio()"
+      title="Musiqa"
+    >
       <svg id="audioIcon" viewBox="0 0 24 24">
         <polygon points="5,3 19,12 5,21" />
       </svg>
     </button>
-    
-    <!-- Замените music.mp3 на путь/название Вашего аудиофайла в репозитории -->
-    <audio id="bgAudio" loop preload="auto">
-      <source src="музыка.mp3" type="audio/mpeg" />
+
+    <!-- Аудио с автоматическим воспроизведением -->
+    <audio id="bgAudio" autoplay loop preload="auto">
+      <source src="music.mp3" type="audio/mpeg" />
       Ваш браузер не поддерживает аудио.
     </audio>
 
@@ -748,16 +662,49 @@
 
     <!-- Скрипты -->
     <script>
-      // 1. Принудительный запуск фоновых видео
+      // 1. Автоматический запуск музыки + Обход автоплей-политики браузеров
+      const audio = document.getElementById('bgAudio');
+
+      function tryPlayAudio() {
+        if (audio) {
+          const promise = audio.play();
+          if (promise !== undefined) {
+            promise.catch(() => {
+              // Если браузер заблокировал автоплей при старте, воспроизводим при первом скролле/клике
+              const startOnUserAction = () => {
+                audio.play();
+                document.removeEventListener('click', startOnUserAction);
+                document.removeEventListener('touchstart', startOnUserAction);
+                document.removeEventListener('scroll', startOnUserAction);
+              };
+              document.addEventListener('click', startOnUserAction);
+              document.addEventListener('touchstart', startOnUserAction);
+              document.addEventListener('scroll', startOnUserAction);
+            });
+          }
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
+        tryPlayAudio();
+
+        // Запуск фоновых видео
         const videos = document.querySelectorAll('video');
         videos.forEach((video) => {
           video.muted = true;
           const playPromise = video.play();
           if (playPromise !== undefined) {
             playPromise.catch(() => {
-              document.addEventListener('touchstart', () => video.play(), { once: true });
-              document.addEventListener('click', () => video.play(), { once: true });
+              document.addEventListener(
+                'touchstart',
+                () => video.play(),
+                { once: true }
+              );
+              document.addEventListener(
+                'click',
+                () => video.play(),
+                { once: true }
+              );
             });
           }
         });
@@ -810,32 +757,31 @@
 
         if (diff > 0) {
           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
           const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
           const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-          document.getElementById('cd-days').innerText = days.toString().padStart(2, '0');
-          document.getElementById('cd-hours').innerText = hours.toString().padStart(2, '0');
-          document.getElementById('cd-minutes').innerText = minutes.toString().padStart(2, '0');
-          document.getElementById('cd-seconds').innerText = seconds.toString().padStart(2, '0');
+          document.getElementById('cd-days').innerText = days
+            .toString()
+            .padStart(2, '0');
+          document.getElementById('cd-hours').innerText = hours
+            .toString()
+            .padStart(2, '0');
+          document.getElementById('cd-minutes').innerText = minutes
+            .toString()
+            .padStart(2, '0');
+          document.getElementById('cd-seconds').innerText = seconds
+            .toString()
+            .padStart(2, '0');
         }
       }
       setInterval(updateCountdown, 1000);
       updateCountdown();
 
-      // 4. Лайтбокс
-      function openLb(el) {
-        const img = el.querySelector('img');
-        document.getElementById('lb-img').src = img.src;
-        document.getElementById('lightbox').classList.add('active');
-      }
-      function closeLb() {
-        document.getElementById('lightbox').classList.remove('active');
-      }
-
-      // 5. Музыка
+      // 4. Переключение музыки кнопкой
       function toggleAudio() {
-        const audio = document.getElementById('bgAudio');
         if (audio.paused) {
           audio.play();
         } else {
